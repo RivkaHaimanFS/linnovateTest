@@ -3,34 +3,29 @@ import { useForm } from "react-hook-form";
 import Input from "./Input";
 import Textarea from "./Textarea";
 import Button from "./Button";
-import { useDispatch } from "react-redux";
-import { addReview } from "@/store/products.slice";
 
 interface ReviewFormProps {
-  onReviewSubmit: (review: Review) => void;
+  onReviewSubmit: (review: Omit<Review, "id">) => void;
 }
 
 const ReviewForm = ({ onReviewSubmit }: ReviewFormProps) => {
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Review>({
+  } = useForm<Omit<Review, "id">>({
     defaultValues: {
-      user: "",
-      comment: "",
-      rating: undefined,
+      author: "",
+      text: "",
+      rating: 5,
     },
   });
 
-  const onSubmit = (data: Review) => {
+  const onSubmit = (data: Omit<Review, "id">) => {
     onReviewSubmit(data);
     reset();
   };
-
-  console.log({ errors });
 
   return (
     <div className="mt-6">
@@ -44,16 +39,17 @@ const ReviewForm = ({ onReviewSubmit }: ReviewFormProps) => {
           label="Name"
           type="text"
           placeholder="Your Name"
-          error={errors.user?.message}
-          {...register("user", { required: "Name is required" })}
+          error={errors.author?.message}
+          {...register("author", { required: "Name is required" })}
         />
 
         <Textarea
           label="Your Review"
           placeholder="Write your review here..."
-          {...register("comment", { required: "Review cannot be empty" })}
-          error={errors.comment?.message}
+          {...register("text", { required: "Review cannot be empty" })}
+          error={errors.text?.message}
         />
+
         <Input
           label="Rating (1-5)"
           type="number"
@@ -67,6 +63,7 @@ const ReviewForm = ({ onReviewSubmit }: ReviewFormProps) => {
           })}
           error={errors.rating?.message}
         />
+
         <Button type="submit" variant="secondary">
           Submit Review
         </Button>
@@ -76,3 +73,4 @@ const ReviewForm = ({ onReviewSubmit }: ReviewFormProps) => {
 };
 
 export default ReviewForm;
+  

@@ -5,7 +5,6 @@ interface ProductDetailsProps {
   imageUrl: string;
   description: string;
   price: number;
-  rating: number;
 }
 
 const ProductDetails = ({
@@ -13,7 +12,6 @@ const ProductDetails = ({
   imageUrl,
   description,
   price,
-  rating,
 }: ProductDetailsProps) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -27,7 +25,6 @@ const ProductDetails = ({
       />
       <p className="text-gray-700 my-4">{description}</p>
       <p className="text-lg font-semibold text-blue-600">Price: ${price}</p>
-      <p className="text-lg">⭐ {rating} / 5</p>
     </div>
   );
 };

@@ -17,7 +17,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       />
       <h2 className="text-lg font-semibold mt-2">{product.name}</h2>
       <p className="text-gray-600">${product.price}</p>
-      <p className="text-yellow-500">⭐ {product.rating.toFixed(1)}</p>
     </div>
   );
 };
