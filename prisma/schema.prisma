@@ -1,0 +1,28 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  price       Float
+  imageUrl    String
+  reviews     Review[] @relation("ProductReviews")
+  createdAt DateTime @default(now())
+
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  author    String
+  text      String
+  product   Product  @relation("ProductReviews", fields: [productId], references: [id])
+  productId String   @db.ObjectId
+  createdAt DateTime @default(now())
+}
