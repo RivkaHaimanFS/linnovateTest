@@ -7,7 +7,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition">
+    <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition h-full flex flex-col ">
       <Image
         src={product.imageUrl}
         alt={product.name}
