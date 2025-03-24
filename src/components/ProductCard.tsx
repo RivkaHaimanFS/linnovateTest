@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Product } from "@/models/types";
 
@@ -9,7 +10,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition h-full flex flex-col ">
       <Image
-        src={product.imageUrl}
+        src={product.imageUrl || "/placeholder.png"} // תמונת ברירת מחדל
         alt={product.name}
         width={200}
         height={200}

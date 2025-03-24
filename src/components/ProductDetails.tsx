@@ -1,18 +1,7 @@
+import { Product } from "@/models/types";
 import Image from "next/image";
 
-interface ProductDetailsProps {
-  name: string;
-  imageUrl: string;
-  description: string;
-  price: number;
-}
-
-const ProductDetails = ({
-  name,
-  imageUrl,
-  description,
-  price,
-}: ProductDetailsProps) => {
+const ProductDetails = ({ name, imageUrl, description, price }: Product) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold mb-4">{name}</h1>

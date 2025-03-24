@@ -13,16 +13,15 @@ model Product {
   description String
   price       Float
   imageUrl    String
-  reviews     Review[] @relation("ProductReviews")
-  createdAt DateTime @default(now())
-
+  createdAt   DateTime @default(now())
 }
 
 model Review {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   author    String
   text      String
-  product   Product  @relation("ProductReviews", fields: [productId], references: [id])
-  productId String   @db.ObjectId
+  productId String   @db.ObjectId // קשר חד-כיווני למוצר
   createdAt DateTime @default(now())
+
+  @@index([productId]) // יצירת אינדקס לחיפוש ביקורות לפי מוצר
 }

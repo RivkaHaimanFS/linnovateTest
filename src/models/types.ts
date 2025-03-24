@@ -4,12 +4,12 @@ export interface Product {
   description: string;
   price: number;
   imageUrl: string;
-  reviews: Review[];
+  reviews?: Review[];
 }
 
 export interface Review {
   id?: string; // Optional for new reviews
-  user: string;
-  comment: string;
+  author: string;
+  text: string;
   createdAt?: Date; // Optional if returned from DB
 }

@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Product Catalog & Reviews Application
 
-## Getting Started
+Overview
 
-First, run the development server:
+This is a Next.js-based product catalog application that allows users to browse products and submit reviews. The project focuses on building a robust frontend with API integration and database storage.
 
-```bash
+Features
+
+List products on the homepage
+
+View detailed product information and reviews
+
+Submit new reviews for products
+
+Modular and reusable UI components
+
+API for fetching and submitting data
+
+Database integration with Prisma
+
+Tech Stack
+
+Frontend: Next.js, React, TypeScript
+
+Styling: CSS Modules / TailwindCSS
+
+State Management: Context API
+
+Backend: Next.js API Routes
+
+Database: PostgreSQL (via Prisma ORM)
+
+Testing: Jest, React Testing Library
+
+Project Structure
+
+my-next-app/
+├── prisma/ # Database schema and seeding
+├── public/ # Static assets
+├── src/
+│ ├── app/ # Next.js App Router
+│ │ ├── api/ # API routes
+│ │ ├── product/ # Product pages
+│ ├── components/ # UI components
+│ ├── context/ # Context providers
+│ ├── models/ # Type definitions
+│ ├── styles/ # Global styles
+├── .env # Environment variables
+├── package.json # Project dependencies
+├── tsconfig.json # TypeScript config
+
+Setup & Installation
+
+1️⃣ Clone the Repository
+
+git clone <repository-url>
+cd my-next-app
+
+2️⃣ Install Dependencies
+
+npm install
+
+3️⃣ Set Up Database
+
+npx prisma generate
+npx prisma db push
+npm run seed
+
+4️⃣ Run the Application
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+API Endpoints
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+GET /api/products → Fetch all products
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+GET /api/products/:id → Fetch product details
 
-## Learn More
+POST /api/products/:id/review → Add a review
 
-To learn more about Next.js, take a look at the following resources:
+Testing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Run tests using:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npm test
 
-## Deploy on Vercel
+Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To deploy the application, use:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run build
+npm start
+
+Notes
+
+Ensure the .env file is properly configured for database connection.
+
+Adjust styles and API configurations as needed.
+
+Happy coding! 🚀

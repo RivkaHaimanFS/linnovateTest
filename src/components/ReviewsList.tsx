@@ -1,19 +1,16 @@
-import { Review } from "@/models/types";
+import { useReviews } from "@/context/ReviewsContext";
 
-type ReviewsListProps = {
-  reviews: Review[];
-};
+export default function ReviewsList() {
+  const { reviews } = useReviews();
 
-const ReviewsList = ({ reviews }: ReviewsListProps) => {
   return (
     <div className="mt-6">
       <h2 className="text-2xl font-semibold mb-3">Customer Reviews</h2>
       {reviews.length > 0 ? (
         reviews.map((review, index) => (
           <div key={index} className="bg-gray-100 p-4 rounded-lg mb-2">
-            <p className="font-semibold">{review.user}</p>
-            <p className="text-gray-600">{review.comment}</p>
-            <p className="text-yellow-500">⭐ {review.rating}</p>
+            <p className="font-semibold">{review.author}</p>
+            <p className="text-gray-600">{review.text}</p>
           </div>
         ))
       ) : (
@@ -21,6 +18,4 @@ const ReviewsList = ({ reviews }: ReviewsListProps) => {
       )}
     </div>
   );
-};
-
-export default ReviewsList;
+}

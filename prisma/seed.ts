@@ -1,14 +1,13 @@
-import { PrismaClient } from "@prisma/client";
-
+const PrismaClient = require("@prisma/client").PrismaClient;
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("🔄 Seeding database...");
 
-  // מחיקת נתונים קיימים אם הם קיימים
   try {
     await prisma.review.deleteMany();
     await prisma.product.deleteMany();
+    console.log("✅ Existing data deleted.");
   } catch (error) {
     console.warn(
       "⚠️ Warning: Could not delete existing data. It may not exist yet."
@@ -44,7 +43,7 @@ async function main() {
         description: "Flagship Android phone with a 200MP camera",
         price: 1199.99,
         imageUrl:
-          "https://images.unsplash.com/photo-1601972602009-97df62cdb01a",
+          "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
       },
       {
         name: "Dell XPS 15",
@@ -63,26 +62,43 @@ async function main() {
     ],
   });
 
-  console.log("✅ Products i  nserted successfully!");
+  console.log("✅ Products inserted successfully!");
 
+  // יצירת ביקורות למוצרים מסוימים
   const laptop = await prisma.product.findFirst({
     where: { name: "MacBook Pro 16" },
   });
-  if (laptop) {
-    await prisma.review.create({
-      data: {
-        author: "John Doe",
-        text: "Amazing performance and battery life!",
-        productId: laptop.id,
-      },
+
+  const phone = await prisma.product.findFirst({
+    where: { name: "iPhone 14 Pro" },
+  });
+
+  if (laptop && phone) {
+    await prisma.review.createMany({
+      data: [
+        {
+          author: "John Doe",
+          text: "Amazing performance and battery life!",
+          productId: laptop.id,
+        },
+        {
+          author: "Jane Smith",
+          text: "A great phone, but quite expensive.",
+          productId: phone.id,
+        },
+      ],
     });
+
     console.log("✅ Reviews inserted successfully!");
+  } else {
+    console.warn("⚠️ Some products not found for reviews.");
   }
 }
 
 main()
   .catch((e) => {
-    console.error("❌ Error seeding database:", e);
+    console.error("❌ Seeding error:", e);
+    process.exit(1);
   })
   .finally(async () => {
     await prisma.$disconnect();
