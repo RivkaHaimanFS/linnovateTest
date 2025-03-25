@@ -1,3 +1,4 @@
+```bash
 Product Catalog & Reviews Application
 
 Overview
@@ -34,7 +35,7 @@ Testing: Jest, React Testing Library
 
 ## Project Structure
 
-```bash
+
 my-next-app/
 ├── prisma/          # Database schema and seeding
 ├── public/          # Static assets
