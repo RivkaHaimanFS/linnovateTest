@@ -33,11 +33,15 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
         className="bg-white p-4 rounded-lg shadow"
       >
         <Input
+          data-testid="author-input"
+          id="author"
           label="Name"
           {...register("author", { required: "Name is required" })}
           error={errors.author?.message}
         />
         <Textarea
+          data-testid="review-input"
+          id="text"
           label="Your Review"
           {...register("text", { required: "Review cannot be empty" })}
           error={errors.text?.message}

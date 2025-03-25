@@ -1,14 +1,48 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import HomePage from "@/app/page";
+import { getProducts } from "@/api";
+import { Product } from "@/models/types";
 import "@testing-library/jest-dom";
-import HomePage from "../page";
+
+jest.mock("@/api", () => ({
+  getProducts: jest.fn(),
+}));
 
 describe("HomePage", () => {
-  it("renders no products message when product list is empty", async () => {
-    render(<HomePage />);
+  it("renders products when API call is successful", async () => {
+    const mockProducts: Product[] = [
+      {
+        id: "1",
+        name: "Product 1",
+        price: 100,
+        description: "Desc 1",
+        imageUrl: "",
+      },
+      {
+        id: "2",
+        name: "Product 2",
+        price: 200,
+        description: "Desc 2",
+        imageUrl: "",
+      },
+    ];
+    (getProducts as jest.Mock).mockResolvedValue(mockProducts);
 
-    expect(
-      await screen.findByText("No products available")
-    ).toBeInTheDocument();
+    render(await HomePage());
+
+    await waitFor(() => {
+      expect(screen.getByText("Product 1")).toBeInTheDocument();
+      expect(screen.getByText("Product 2")).toBeInTheDocument();
+    });
+  });
+
+  it("renders message when no products are available", async () => {
+    (getProducts as jest.Mock).mockResolvedValue([]);
+
+    render(await HomePage());
+
+    await waitFor(() => {
+      expect(screen.getByText("No products available")).toBeInTheDocument();
+    });
   });
 });

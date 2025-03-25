@@ -8,8 +8,8 @@ export interface Product {
 }
 
 export interface Review {
-  id?: string; // Optional for new reviews
+  id?: string;
   author: string;
   text: string;
-  createdAt?: Date; // Optional if returned from DB
+  createdAt?: Date;
 }

@@ -22,13 +22,13 @@ Tech Stack
 
 Frontend: Next.js, React, TypeScript
 
-Styling: CSS Modules / TailwindCSS
+Styling: TailwindCSS
 
 State Management: Context API
 
 Backend: Next.js API Routes
 
-Database: PostgreSQL (via Prisma ORM)
+Database: MongoDB (via Prisma ORM)
 
 Testing: Jest, React Testing Library
 
@@ -93,7 +93,7 @@ npm start
 
 Notes
 
-Ensure the .env file is properly configured for database connection.
+Ensure the .env file is properly configured for database connection.(see .env.example)
 
 Adjust styles and API configurations as needed.
 
