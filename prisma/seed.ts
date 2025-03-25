@@ -14,7 +14,6 @@ async function main() {
     );
   }
 
-  // יצירת מוצרים עם תמונות אמיתיות
   const products = await prisma.product.createMany({
     data: [
       {
@@ -64,7 +63,6 @@ async function main() {
 
   console.log("✅ Products inserted successfully!");
 
-  // יצירת ביקורות למוצרים מסוימים
   const laptop = await prisma.product.findFirst({
     where: { name: "MacBook Pro 16" },
   });

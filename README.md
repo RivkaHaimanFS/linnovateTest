@@ -32,29 +32,31 @@ Database: MongoDB (via Prisma ORM)
 
 Testing: Jest, React Testing Library
 
-Project Structure
+## Project Structure
 
+```bash
 my-next-app/
-├── prisma/ # Database schema and seeding
-├── public/ # Static assets
+├── prisma/          # Database schema and seeding
+├── public/          # Static assets
 ├── src/
-│ ├── app/ # Next.js App Router
-│ │ ├── api/ # API routes
-│ │ ├── product/ # Product pages
-│ ├── components/ # UI components
-│ ├── context/ # Context providers
-│ ├── models/ # Type definitions
-│ ├── styles/ # Global styles
-├── .env # Environment variables
-├── package.json # Project dependencies
-├── tsconfig.json # TypeScript config
+│   ├── app/         # Next.js App Router
+│   │   ├── api/     # API routes
+│   │   ├── product/ # Product pages
+│   ├── components/  # UI components
+│   ├── context/     # Context providers
+│   ├── models/      # Type definitions
+│   ├── styles/      # Global styles
+├── .env             # Environment variables
+├── package.json     # Project dependencies
+├── tsconfig.json    # TypeScript config
+
 
 Setup & Installation
 
 1️⃣ Clone the Repository
 
 git clone <repository-url>
-cd my-next-app
+cd linnovateTest
 
 2️⃣ Install Dependencies
 
@@ -98,3 +100,4 @@ Ensure the .env file is properly configured for database connection.(see .env.ex
 Adjust styles and API configurations as needed.
 
 Happy coding! 🚀
+```
